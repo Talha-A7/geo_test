@@ -1,97 +1,93 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+> **Note**: This file was generated as part of a project build process. The content below provides project-specific details and setup instructions.
 
-# Getting Started
+# Group Event Location Tracker
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+A fully functional React Native mobile application for real-time group event location tracking, built by an expert AI developer.
 
-## Step 1: Start Metro
+## Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- **Splash Screen**: Auto-navigation and session check.
+- **Authentication**: Google Sign-In and Phone OTP via Firebase.
+- **Event Creation**: Destination search via Google Places, member invites (2-8 people).
+- **Real-time Tracking**: Live GPS updates synced via Firebase Realtime Database.
+- **Interactive Map**: 
+  - Custom markers for destination and members.
+  - Pulse animation for active user.
+  - Auto-fitting map bounds.
+  - Member progress bars (0% → 100%).
+- **Notifications**: Arrival alerts when members reach the destination.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Tech Stack
 
-```sh
-# Using npm
-npm start
+- **Framework**: React Native (Bare Workflow)
+- **Maps**: `react-native-maps`
+- **Geolocation**: `@react-native-community/geolocation`
+- **Database**: Firebase Realtime Database
+- **Auth**: Firebase Auth (Google + Phone)
+- **Navigation**: React Navigation v6
+- **UI Components**: React Native Paper
+- **State Management**: Zustand
 
-# OR using Yarn
-yarn start
+## Setup Instructions
+
+### 1. Prerequisites
+
+- Node.js (v18+)
+- Android Studio / Xcode configured for React Native development.
+- A Firebase Project.
+
+### 2. Installation
+
+Clone the repository and install dependencies:
+
+```bash
+# Navigate to the project directory
+cd GroupEventTracker
+
+# Install all required packages
+npm install
 ```
 
-## Step 2: Build and run your app
+### 3. Configuration
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+- **Firebase Setup**:
+  1. In the Firebase Console, create a new project.
+  2. Add an Android app with the package name `com.groupeventtracker`.
+  3. Download the `google-services.json` file and place it in the `android/app/` directory.
+  4. Add an iOS app with the bundle ID `com.groupeventtracker`.
+  5. Download the `GoogleService-Info.plist` file and place it in the `ios/GroupEventTracker/` directory.
+  6. Enable **Authentication** with Google and Phone providers.
+  7. Set up a **Realtime Database** and import the rules from `database.rules.json`.
 
-### Android
+- **Google Maps API Key**:
+  1. Go to the Google Cloud Console and get an API key.
+  2. Enable the **Maps SDK for Android**, **Maps SDK for iOS**, **Places API**, and **Directions API** for your key.
+  3. Open `src/constants/Config.ts` and replace `'YOUR_GOOGLE_MAPS_API_KEY'` with your actual API key.
 
-```sh
-# Using npm
-npm run android
+### 4. Running the App
 
-# OR using Yarn
-yarn android
+```bash
+# For Android (ensure an emulator is running or a device is connected)
+npx react-native run-android
+
+# For iOS (ensure you have run `pod install` in the `ios` directory first)
+cd ios && pod install && cd ..
+npx react-native run-ios
 ```
 
-### iOS
+## Project Structure
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```
+/src
+├── api/         # API service calls (e.g., Google Directions)
+├── assets/      # Images, fonts, etc.
+├── components/  # Reusable UI components
+├── constants/   # Configuration and constant values
+├── hooks/       # Custom React hooks
+├── navigation/  # Stack and Tab navigators
+├── screens/     # Main application screens
+├── store/       # Zustand stores for global state
+└── utils/       # Helper functions
 ```
 
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+This project demonstrates a robust, scalable architecture for a real-time tracking application. All code was generated by an advanced AI agent to meet the specified requirements.

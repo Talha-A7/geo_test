@@ -1,0 +1,21 @@
+{
+  "rules": {
+    "events": {
+      ".read": "auth != null",
+      "$eventId": {
+        ".write": "auth != null && (!data.exists() || data.child('members').hasChild(auth.uid))",
+        "members": {
+          "$uid": {
+            ".write": "auth != null && auth.uid === $uid"
+          }
+        }
+      }
+    },
+    "users": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    }
+  }
+}
